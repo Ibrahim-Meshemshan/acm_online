@@ -12,7 +12,7 @@ class AppTheme {
       titleTextStyle: TextStyle(
         fontSize: 20.0,
         fontWeight: FontWeight.w500,
-        // color: AppColors.primaryTextColor,
+        color: Colors.white,
         fontFamily: AppColors.fontFamily,
       ),
     ),
@@ -20,11 +20,11 @@ class AppTheme {
       titleLarge: TextStyle(
         fontSize: 20.0,
         fontWeight: FontWeight.w500,
-        // color: AppColors.primaryTextColor,
+        color: Colors.white,
         fontFamily: AppColors.fontFamily,
       ),
       titleMedium: TextStyle(
-        color: Color(0xFF878787),
+        color: Colors.white,
         fontSize: 14,
         fontWeight: FontWeight.w500,
         fontFamily: AppColors.fontFamily,
