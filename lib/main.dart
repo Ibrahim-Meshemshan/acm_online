@@ -1,4 +1,6 @@
 import 'package:acm_online/core/app_theme/app_theme.dart';
+import 'package:acm_online/core/routes_manager/routes_names.dart';
+import 'package:acm_online/feature/auth/login/presentation/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,6 +28,7 @@ class AcmOnline extends StatelessWidget {
           theme: AppTheme.lightTheme,
           home: HomeBodyScreen(),
           onGenerateRoute: RouteGenerator.generateRoutes,
+          initialRoute: RoutesNames.login,
         );
       },
     );
