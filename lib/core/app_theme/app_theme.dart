@@ -41,5 +41,9 @@ class AppTheme {
         )
       )
     ),
+
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      selectedLabelStyle: TextStyle(color: AppColors.primaryColor)
+    )
   );
 }

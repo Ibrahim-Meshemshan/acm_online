@@ -29,35 +29,35 @@ class HomeBodyScreen extends StatelessWidget {
             items: const [
               BottomNavigationBarItem(
                 backgroundColor: AppColors.backgroundColor,
-                icon: Icon(Icons.home, color: AppColors.secondPrimaryColor),
+                icon: Icon(Icons.home, color: AppColors.primaryColor),
                 activeIcon: Icon(
-                    Icons.home, color: AppColors.secondPrimaryColor),
+                    Icons.home, color: AppColors.primaryColor),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                    Icons.calendar_month, color: AppColors.secondPrimaryColor),
+                    Icons.calendar_month, color: AppColors.primaryColor),
                 activeIcon: Icon(
                   Icons.calendar_month,
-                  color: AppColors.secondPrimaryColor,
+                  color: AppColors.primaryColor,
                 ),
-                label: 'Result',
+                label: 'Category',
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                    Icons.person_outline, color: AppColors.secondPrimaryColor),
+                    Icons.person_outline, color: AppColors.primaryColor),
                 activeIcon: Icon(
                   Icons.person_outline,
-                  color: AppColors.secondPrimaryColor,
+                  color: AppColors.primaryColor,
                 ),
                 label: 'LeaderBord',
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                    Icons.person_outline, color: AppColors.secondPrimaryColor),
+                    Icons.person_outline, color: AppColors.primaryColor),
                 activeIcon: Icon(
                   Icons.person_outline,
-                  color: AppColors.secondPrimaryColor,
+                  color: AppColors.primaryColor,
                 ),
                 label: 'Profile',
               ),

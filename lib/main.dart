@@ -27,7 +27,7 @@ class AcmOnline extends StatelessWidget {
           theme: AppTheme.lightTheme,
           home: HomeBodyScreen(),
           onGenerateRoute: RouteGenerator.generateRoutes,
-          // initialRoute: RoutesNames.login,
+          initialRoute: RoutesNames.signup,
         );
       },
     );
