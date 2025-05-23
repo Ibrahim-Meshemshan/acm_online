@@ -1,9 +1,4 @@
-
-import 'package:acm_online/core/app_colors/colors.dart';
-import 'package:acm_online/core/routes_manager/routes_names.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/app_consts/app_validators.dart';
 import '../../../../../core/utils/status.dart';
@@ -15,11 +10,6 @@ import '../widgets/custom_text.dart';
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
-  @override
-  State<SignupScreen> createState() => _SignupScreenState();
-}
-
-class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     // final viewModel = context.read<SignupCubit>();
@@ -104,6 +94,10 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         10.horizontalSpace,
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        children: [
 
                       ],
                     ),
