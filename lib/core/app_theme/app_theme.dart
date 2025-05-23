@@ -4,6 +4,8 @@ import '../app_colors/colors.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
+
+
     scaffoldBackgroundColor: AppColors.backgroundColor,
     primaryColor: AppColors.primaryColor,
     appBarTheme: const AppBarTheme(
@@ -12,7 +14,7 @@ class AppTheme {
       titleTextStyle: TextStyle(
         fontSize: 20.0,
         fontWeight: FontWeight.w500,
-        color: Colors.white,
+        color: AppColors.whiteColor,
         fontFamily: AppColors.fontFamily,
       ),
     ),
@@ -20,11 +22,11 @@ class AppTheme {
       titleLarge: TextStyle(
         fontSize: 20.0,
         fontWeight: FontWeight.w500,
-        color: Colors.white,
+        color: AppColors.whiteColor,
         fontFamily: AppColors.fontFamily,
       ),
       titleMedium: TextStyle(
-        color: Colors.white,
+        color: AppColors.whiteColor,
         fontSize: 14,
         fontWeight: FontWeight.w500,
         fontFamily: AppColors.fontFamily,
@@ -38,6 +40,10 @@ class AppTheme {
           borderRadius: BorderRadius.circular(50)
         )
       )
+    ),
+
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      selectedLabelStyle: TextStyle(color: AppColors.primaryColor)
     )
   );
 }
