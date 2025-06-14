@@ -1,16 +1,12 @@
-import 'package:acm_online/core/app_theme/app_theme.dart';
-import 'package:acm_online/core/routes_manager/routes_names.dart';
-import 'package:acm_online/feature/auth/login/presentation/pages/login_screen.dart';
-import 'package:acm_online/core/routes_manager/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'core/app_theme/app_theme.dart';
+import 'core/di/di.dart';
 import 'core/routes_manager/route_generator.dart';
-import 'feature/app/home_body.dart';
 
 void main() async {
-  // configureDependencies();
-
+  WidgetsFlutterBinding.ensureInitialized();
+  configureDependencies();
   runApp(const AcmOnline());
 }
 
@@ -27,9 +23,7 @@ class AcmOnline extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
-          home: HomeBodyScreen(),
           onGenerateRoute: RouteGenerator.generateRoutes,
-          initialRoute: RoutesNames.signup,
         );
       },
     );

@@ -63,7 +63,7 @@ class DialogUtils {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.whiteColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
@@ -90,7 +90,7 @@ class DialogUtils {
               },
               child: Text(
                 posActionName ?? 'OK',
-                style: const TextStyle(color: Colors.black, fontSize: 16),
+                style: const TextStyle(color: AppColors.primaryColor, fontSize: 16),
               ),
             ),
           ],

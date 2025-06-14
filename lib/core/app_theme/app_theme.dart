@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../app_colors/colors.dart';
 
 class AppTheme {
+
   static ThemeData lightTheme = ThemeData(
 
 
@@ -32,17 +33,24 @@ class AppTheme {
         fontFamily: AppColors.fontFamily,
       ),
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        textStyle: const TextStyle(color: AppColors.backgroundColor),
-        padding: const EdgeInsets.symmetric(vertical: 12,horizontal: 20),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50)
-        )
-      )
-    ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor:  AppColors.primaryColor,
+          foregroundColor: AppColors.whiteColor,
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          textStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            fontFamily: AppColors.fontFamily,
+          ),
+        ),
+      ),
 
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedLabelStyle: TextStyle(color: AppColors.primaryColor)
     )
   );

@@ -1,6 +1,7 @@
 import 'package:acm_online/feature/app/home/presentation/pages/home_screen.dart';
 import 'package:acm_online/feature/app/profile/presentation/pages/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../core/app_colors/colors.dart';
 import 'category/presentation/pages/category_screen.dart';
@@ -30,35 +31,24 @@ class HomeBodyScreen extends StatelessWidget {
               BottomNavigationBarItem(
                 backgroundColor: AppColors.backgroundColor,
                 icon: Icon(Icons.home, color: AppColors.primaryColor),
-                activeIcon: Icon(
-                    Icons.home, color: AppColors.primaryColor),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(
-                    Icons.calendar_month, color: AppColors.primaryColor),
-                activeIcon: Icon(
-                  Icons.calendar_month,
-                  color: AppColors.primaryColor,
-                ),
+                icon: FaIcon(
+                  FontAwesomeIcons.bars, color: AppColors.primaryColor,),
+
                 label: 'Category',
               ),
               BottomNavigationBarItem(
-                icon: Icon(
-                    Icons.person_outline, color: AppColors.primaryColor),
-                activeIcon: Icon(
-                  Icons.person_outline,
-                  color: AppColors.primaryColor,
-                ),
+                icon: FaIcon(
+                  FontAwesomeIcons.award, color: AppColors.primaryColor,),
+
                 label: 'LeaderBord',
               ),
               BottomNavigationBarItem(
                 icon: Icon(
                     Icons.person_outline, color: AppColors.primaryColor),
-                activeIcon: Icon(
-                  Icons.person_outline,
-                  color: AppColors.primaryColor,
-                ),
+
                 label: 'Profile',
               ),
             ],

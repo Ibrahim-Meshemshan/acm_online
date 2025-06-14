@@ -1,3 +1,5 @@
+import '../exceptions/failures.dart';
+
 sealed class ApiResult<T> {}
 
 class ApiSuccess<T> extends ApiResult<T> {
@@ -7,7 +9,7 @@ class ApiSuccess<T> extends ApiResult<T> {
 }
 
 class ApiError<T> extends ApiResult<T> {
-  Exception? exception;
+  Failures failures;
 
-  ApiError(this.exception);
+  ApiError({required this.failures});
 }

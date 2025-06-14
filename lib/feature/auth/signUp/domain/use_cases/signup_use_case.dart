@@ -8,9 +8,7 @@ import '../entities/signup_request_entity.dart';
 @injectable
 class SignupUseCase {
   SignupRepo repo;
-
   SignupUseCase({required this.repo});
-
   Future<ApiResult<SignupResponseEntity>> call(SignupRequestEntity request) {
     return repo.signup(request);
   }

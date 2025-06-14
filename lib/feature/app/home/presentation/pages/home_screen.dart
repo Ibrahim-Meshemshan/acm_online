@@ -57,21 +57,10 @@ class HomeScreen extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primaryColor
                     ),
-                    onPressed: () {},
-                    child: Text('Start Coding Quiz',style: AppTheme.lightTheme.textTheme.titleMedium,),
-                  ),
-                ),
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primaryColor
-                    ),
                     onPressed: () {
-                      Navigator.pushNamed(context, RoutesNames.category);
+                      Navigator.pushNamed(context, RoutesNames.quizScreen);
                     },
-                    child: Text('Explore Category',style: AppTheme.lightTheme.textTheme.titleMedium?.copyWith(
-                        color: AppColors.whiteColor
-                    ),),
+                    child: Text('Start Coding Quiz',style: AppTheme.lightTheme.textTheme.titleMedium,),
                   ),
                 ),
               ],
