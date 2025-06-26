@@ -4,10 +4,10 @@ import '../models/result.dart';
 import 'package:dio/dio.dart';
 
 class ApiExecute {
-  static Future<Result<T>> executeApi<T>(Future<T> Function() apiCall) async {
+  static Future<ApiResult<T>> executeApi<T>(Future<T> Function() apiCall) async {
     try {
       var result = await apiCall.call();
-      return Success(result);
+      return ApiSuccess(result);
     } on DioException catch (ex) {
       switch (ex.type) {
         case DioExceptionType.badCertificate:
@@ -16,27 +16,27 @@ class ApiExecute {
         case DioExceptionType.receiveTimeout:
         case DioExceptionType.connectionTimeout:
           {
-            return Error(NetworkError("Check your internet connection"));
+            return ApiError(NetworkError("Check your internet connection"));
           }
         case DioExceptionType.badResponse:
           {
             var responseCode = ex.response?.statusCode ?? 0;
             var errorModel = ErrorModel.fromJson(ex.response?.data);
             if (responseCode >= 400 && responseCode < 500) {
-              return Error(ClientError(errorModel: errorModel));
+              return ApiError(ClientError(errorModel: errorModel));
             }
             if (responseCode >= 500 && responseCode < 600) {
-              return Error(ServerError(errorModel));
+              return ApiError(ServerError(errorModel));
             }
-            return Error(Exception("Something went wrong"));
+            return ApiError(Exception("Something went wrong"));
           }
         default:
           {
-            return Error(Exception("Something went wrong"));
+            return ApiError(Exception("Something went wrong"));
           }
       }
     } on Exception catch (ex) {
-      return Error(ex);
+      return ApiError(ex);
     }
   }
 }

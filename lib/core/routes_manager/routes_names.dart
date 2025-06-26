@@ -1,6 +1,6 @@
 class RoutesNames {
   static const String homeBody = "home_body";
-  static const String forgetPassword = "forget_password";
-  static const String verificationCode = "verification_code";
-  static const String resetPassword = "reset_password";
+  static const String login = "login";
+  static const String signup = "signup";
+  static const String category = "category";
 }
