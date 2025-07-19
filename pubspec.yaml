@@ -48,6 +48,9 @@ dependencies:
   retrofit_generator: ^9.1.9
   json_annotation: ^4.9.0
   get_it: ^8.0.3
+  url_launcher: ^6.3.1
+  webview_flutter: ^4.13.0
+  smooth_page_indicator: ^1.2.1
 
 
 

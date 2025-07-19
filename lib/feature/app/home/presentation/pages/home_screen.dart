@@ -4,25 +4,15 @@ import 'package:acm_online/core/routes_manager/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../../../core/widget/custom_app_bar.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            const FaIcon(
-              FontAwesomeIcons.brain,
-              color: AppColors.primaryColor,
-              size: 30,
-            ),
-            const SizedBox(width: 20),
-            Text('Quizly', style: AppTheme.lightTheme.textTheme.titleLarge),
-          ],
-        ),
-      ),
+   appBar: CustomAppBar(title: 'Quizly',icon: const Icon(FontAwesomeIcons.brain),),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(

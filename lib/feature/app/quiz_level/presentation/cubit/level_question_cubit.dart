@@ -3,16 +3,22 @@ import 'dart:async';
 import 'package:acm_online/feature/app/quiz_level/domain/entities/level_question_entity.dart';
 import 'package:acm_online/feature/app/quiz_level/domain/use_cases/level_question_use_case.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/models/result.dart';
 import '../../../../../core/utils/status.dart';
+import '../../../resources/domain/entities/resources_response_entity.dart';
+import '../../../resources/domain/use_cases/resources_use_case.dart';
+import '../../../resources/presentation/pages/resources_screen.dart';
 
 part 'level_question_state.dart';
 
 @injectable
 class LevelQuestionCubit extends Cubit<LevelQuestionState> {
-  LevelQuestionCubit({required this.useCase}) : super(const LevelQuestionState());
+  LevelQuestionCubit({required this.useCase,required this.resourcesUseCase}) : super(const LevelQuestionState());
+  ResourcesUseCase resourcesUseCase;
 
   final LevelQuestionUseCase useCase;
   Timer? _timer;
@@ -39,6 +45,33 @@ class LevelQuestionCubit extends Cubit<LevelQuestionState> {
           levelQuestionError: result.failures.toString(),
           levelQuestionState: Status.error,
         ));
+    }
+  }
+
+
+
+  Future<void> fetchResources(String level) async {
+    if (isClosed) return;
+    emit(state.copyWith(resourcesState: Status.loading));
+
+    final result = await resourcesUseCase.call(level);
+    if (isClosed) return;
+    switch (result) {
+      case ApiSuccess<List<ResourcesEntity>>():
+        emit(
+          state.copyWith(
+            resourcesList: result.data,
+            resourcesState: Status.success,
+          ),
+        );
+
+      case ApiError<List<ResourcesEntity>>():
+        emit(
+          state.copyWith(
+            resourcesError: result.failures.toString(),
+            resourcesState: Status.error,
+          ),
+        );
     }
   }
 
@@ -130,6 +163,15 @@ class LevelQuestionCubit extends Cubit<LevelQuestionState> {
         state.levelQuestionList?[currentIndex].correctAnswer;
   }
 
+
+  void navigateToResources(BuildContext context, String level) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ResourcesScreen(level: level),
+      ),
+    );
+  }
   @override
   Future<void> close() {
     _timer?.cancel();

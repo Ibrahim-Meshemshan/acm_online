@@ -54,7 +54,6 @@ class DialogUtils {
     BuildContext context,
     String message, {
     // String title = 'Notification',
-    required Icon? Icon(icon),
     String? posActionName = 'OK',
     VoidCallback? posAction,
     bool isError = true,
@@ -139,14 +138,14 @@ class DialogUtils {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.error, color: AppColors.primaryColor, size: 50),
+              const Icon(Icons.error, color: AppColors.primaryColor, size: 50),
               SizedBox(height: 20),
               Text(
                 message,
                 textAlign: TextAlign.center,
                 style: Theme.of(
                   context,
-                ).textTheme.titleMedium?.copyWith(color: Colors.black),
+                ).textTheme.titleMedium?.copyWith(color: Colors.black,),
               ),
             ],
           ),

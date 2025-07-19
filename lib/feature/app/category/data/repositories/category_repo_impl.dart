@@ -1,5 +1,6 @@
 
 
+import 'package:acm_online/feature/app/category/domain/entities/sub_category_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/models/result.dart';
@@ -13,8 +14,13 @@ class CategoryRepoImpl implements  CategoryRepo {
   CategoryRepoImpl(this._dataSource);
 
   @override
-  Future<ApiResult<List<CategoryEntity>>> fetchCategory() {
-    return _dataSource.fetchCategory();
+  Future<ApiResult<List<CategoryEntity>>> fetchCategory() async{
+    return await _dataSource.fetchCategory();
+  }
+
+  @override
+  Future<ApiResult<List<SubCategoryEntity>>> fetchSubCategory() async{
+    return await _dataSource.fetchSubCategory();
   }
 
 

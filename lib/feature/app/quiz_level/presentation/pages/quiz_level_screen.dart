@@ -8,6 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../core/app_colors/colors.dart';
 import '../../../../../core/utils/dialog_utils.dart';
 import '../../../../../core/utils/status.dart';
+import '../../../../../core/widget/custom_app_bar.dart';
+import '../../../resources/presentation/pages/resources_screen.dart';
 
 class QuizLevelScreen extends StatelessWidget {
   const QuizLevelScreen({super.key});
@@ -21,25 +23,31 @@ class QuizLevelScreen extends StatelessWidget {
           final cubit = context.read<LevelQuestionCubit>();
 
           return Scaffold(
-            appBar: AppBar(
-                iconTheme: const IconThemeData(color: AppColors.whiteColor),
-                title: const Text("Question Screen")),
+            appBar: CustomAppBar(title: 'Question Screen',icon: const Icon(Icons.arrow_back),),
             body: BlocConsumer<LevelQuestionCubit, LevelQuestionState>(
               listener: (context, state) {
                 if (state.levelQuestionState == Status.completed) {
                   final score = state.finalScore;
                   final userLevel = _getUserLevel(score);
                   final levelColor = _getLevelColor(userLevel);
-                  final levelText = _getLocalizedLevel(userLevel);
-
+                  final levelText = _getLocalizedLevel(userLevel.toLowerCase());
                   DialogUtils.showMessage(
                     context,
-                    "Your score: ${score.toStringAsFixed(2)}%\n\nYour level: $levelText",
-                    Icon: (context) => const Icon(
-                      FontAwesomeIcons.brain,color: AppColors.secondPrimaryColor,
-                    ),
-                    posActionName: "ok",
+                    "Your score: ${score.toStringAsFixed(2)}%\n\nYour level: ${_getLocalizedLevel(userLevel)}",
+                    posActionName: "Move to study level",
                     isError: score <= 33.33,
+                    posAction: () {
+                      DialogUtils.hideLoading(context);
+                      final englishLevel = _getUserLevel(score).toLowerCase();
+                      context.read<LevelQuestionCubit>().fetchResources(englishLevel).then((_) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResourcesScreen(level: englishLevel),
+                          ),
+                        );
+                      });
+                    },
                   );
                 }
               },
@@ -234,10 +242,10 @@ String _getUserLevel(double score) {
   }
 }
 String _getLocalizedLevel(String level) {
-  switch (level) {
-    case "beginner": return "مبتدئ";
-    case "intermediate": return "متوسط";
-    case "advanced": return "متقدم";
+  switch (level.toLowerCase()) {
+    case "beginner": return "beginner";
+    case "intermediate": return "intermediate";
+    case "advanced": return "advanced";
     default: return level;
   }
 }

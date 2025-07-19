@@ -1,3 +1,4 @@
+import 'package:acm_online/core/widget/custom_app_bar.dart';
 import 'package:acm_online/feature/app/home/presentation/pages/home_screen.dart';
 import 'package:acm_online/feature/app/profile/presentation/pages/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,6 @@ class HomeBodyScreen extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       bottomNavigationBar: ValueListenableBuilder<int>(
         valueListenable: _selectedIndex,
