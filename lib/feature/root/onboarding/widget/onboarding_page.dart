@@ -22,7 +22,7 @@ class OnboardingPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(image, size: 150.sp, color: AppColors.secondPrimaryColor),
+          Icon(image, size: 150.sp, color: AppColors.primaryColor),
           50.verticalSpace,
           Text(
             title,

@@ -11,5 +11,9 @@ class AppColors {
   static const Color greyColor = Color(0xFF878787);
   static const Color errorColor = Color(0xFFB3261E);
 
+  static const Color cardColor = Color(0xFF2E2B38);
+
+
+
   static const String fontFamily = "Inter";
 }

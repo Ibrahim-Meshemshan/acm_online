@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../core/app_colors/colors.dart';
 import 'category/presentation/pages/category_screen.dart';
-import 'leader_bord/presentation/pages/leader_board_screen.dart';
+import 'leader_bord/presentation/pages/levels_screen.dart';
 
 class HomeBodyScreen extends StatelessWidget {
   HomeBodyScreen({super.key});
@@ -14,7 +14,7 @@ class HomeBodyScreen extends StatelessWidget {
   final List<Widget> screens = [
     const HomeScreen(),
     const CategoryScreen(),
-    const LeaderBordScreen(),
+    const LevelsScreen(),
     const ProfileScreen()
   ];
   @override
@@ -42,7 +42,7 @@ class HomeBodyScreen extends StatelessWidget {
                 icon: FaIcon(
                   FontAwesomeIcons.award, color: AppColors.primaryColor,),
 
-                label: 'LeaderBord',
+                label: 'Levels',
               ),
               BottomNavigationBarItem(
                 icon: Icon(

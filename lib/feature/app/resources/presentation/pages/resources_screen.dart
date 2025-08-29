@@ -89,8 +89,7 @@ class ResourcesScreen extends StatelessWidget {
                             const Text('فشل تحميل الموارد'),
                             const SizedBox(height: 16),
                             ElevatedButton(
-                              onPressed: () => context
-                                  .read<LevelQuestionCubit>()
+                              onPressed: () => context.read<LevelQuestionCubit>()
                                   .fetchResources(level ?? 'advanced'),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primaryColor,

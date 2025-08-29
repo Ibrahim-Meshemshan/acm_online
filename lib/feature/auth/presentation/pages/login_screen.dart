@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         30.verticalSpace,
                         CustomTextFormField(
                           readOnly: false,
-                          controller: viewModel.lastNameController,
+                          controller: viewModel.passwordController,
                           labelText: 'Password',
                           isObscure: viewModel.isObscurePassword,
                           icon: IconButton(

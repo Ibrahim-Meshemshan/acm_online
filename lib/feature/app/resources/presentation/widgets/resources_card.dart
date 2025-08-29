@@ -12,6 +12,7 @@ class ResourcesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: AppColors.cardColor,
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
@@ -37,7 +38,7 @@ class ResourcesCard extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.blackColor,
+                  color: AppColors.whiteColor,
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -54,13 +55,13 @@ class ResourcesCard extends StatelessWidget {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Icon(Icons.link, size: 16, color: AppColors.blackColor),
+                  Icon(Icons.link, size: 16, color: AppColors.primaryColor),
                   SizedBox(width: 4),
                   Text(
                     'open link',
                     style: TextStyle(
                       fontSize: 12,
-                      color: AppColors.blackColor,
+                      color: AppColors.primaryColor,
                     ),
                   ),
                 ],

@@ -1,10 +1,12 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../../core/models/result.dart';
 import '../../../../../core/utils/status.dart';
+import '../../../../core/di/di.dart';
 import '../../domain/entities/signin_entity.dart';
 import '../../domain/entities/signin_request_entity.dart';
 import '../../domain/entities/signup_entity.dart';
@@ -59,6 +61,7 @@ class AuthCubit extends Cubit<AuthState> {
 
 
   Future<void> signIn() async {
+    getIt<Dio>().options.headers.remove('Authorization');
     emit(state.copyWith(signInState: Status.loading));
     final signIn = SignInRequestEntity(
       email: emailController.text,
