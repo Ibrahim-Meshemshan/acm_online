@@ -1,15 +1,14 @@
 import 'package:acm_online/core/app_theme/app_theme.dart';
 import 'package:acm_online/core/di/di.dart';
+import 'package:acm_online/feature/app/levels/presentation/cubit/resources_cubit.dart';
 import 'package:acm_online/feature/app/quiz_level/presentation/cubit/level_question_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../../../core/app_colors/colors.dart';
 import '../../../../../core/utils/dialog_utils.dart';
 import '../../../../../core/utils/status.dart';
 import '../../../../../core/widget/custom_app_bar.dart';
-import '../../../resources/presentation/pages/resources_screen.dart';
+import '../../../levels/presentation/pages/resources_screen.dart';
 
 class QuizLevelScreen extends StatelessWidget {
   const QuizLevelScreen({super.key});
@@ -38,15 +37,14 @@ class QuizLevelScreen extends StatelessWidget {
                     isError: score <= 33.33,
                     posAction: () {
                       DialogUtils.hideLoading(context);
-                      final englishLevel = _getUserLevel(score).toLowerCase();
-                      context.read<LevelQuestionCubit>().fetchResources(englishLevel).then((_) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ResourcesScreen(level: englishLevel),
-                          ),
-                        );
-                      });
+                      // final englishLevel = _getUserLevel(score).toLowerCase();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ResourcesScreen(),
+                        ),
+                      );
+
                     },
                   );
                 }

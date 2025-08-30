@@ -3,7 +3,7 @@ part of 'sub_category_cubit.dart';
 class SubCategoryState {
   final Status subCategoryState;
   final String? subCategoryError;
-  final List<SubCategoryEntity>? subCategoryList;
+  final SubCategoryResponseModel? subCategoryList;
 
   const SubCategoryState({
     this.subCategoryState = Status.initial,
@@ -14,7 +14,7 @@ class SubCategoryState {
   SubCategoryState copyWith({
     Status? subCategoryState,
     String? subCategoryError,
-    List<SubCategoryEntity>? subCategoryList,
+    SubCategoryResponseModel ? subCategoryList,
   }) {
     return SubCategoryState(
       subCategoryState: subCategoryState ?? this.subCategoryState,

@@ -1,5 +1,5 @@
-import 'package:acm_online/feature/app/category/domain/entities/category_entity.dart';
-import 'package:acm_online/feature/app/category/domain/use_cases/category_use_case.dart';
+import 'package:acm_online/feature/app/category/data/models/category_response_model.dart';
+import 'package:acm_online/feature/app/category/data/repositories/category_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -9,17 +9,17 @@ import 'category_state.dart';
 
 @injectable
 class CategoryCubit extends Cubit<CategoryState> {
-  CategoryUseCase useCase;
+ final CategoryRepository _categoryRepository;
 
-  CategoryCubit({required this.useCase}) : super(const CategoryState());
+  CategoryCubit(this._categoryRepository) : super(const CategoryState());
 
   Future<void> fetchCategory() async {
     emit(state.copyWith(categoryState: Status.loading));
 
-    final result = await useCase.call();
+    final result = await _categoryRepository.getCategories();
 
     switch (result) {
-      case ApiSuccess<List<CategoryEntity>>():
+      case ApiSuccessResult<CategoryResponseModel>():
         emit(
           state.copyWith(
             categoryList: result.data,
@@ -27,7 +27,7 @@ class CategoryCubit extends Cubit<CategoryState> {
           ),
         );
 
-      case ApiError<List<CategoryEntity>>():
+      case ApiErrorResult<CategoryResponseModel>():
         emit(
           state.copyWith(
             categoryError: result.failures.toString(),

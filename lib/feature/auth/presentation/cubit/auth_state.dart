@@ -7,8 +7,8 @@ class AuthState {
   final String? signUpError;
   final String? signInError;
 
-  final SignupResponseEntity? signupList;
-  final SignInResponseEntity? signInList;
+  final RegisterResponseModel? signupList;
+  final LoginResponseModel? signInList;
 
   const AuthState({
     this.signUpState = Status.initial,
@@ -24,8 +24,8 @@ class AuthState {
     Status? signInState,
     String? signUpError,
     String? signInError,
-    SignupResponseEntity? signupList,
-    SignInResponseEntity? signInList,
+    RegisterResponseModel? signupList,
+    LoginResponseModel? signInList,
   }) {
     return AuthState(
       signUpState: signUpState ?? this.signUpState,

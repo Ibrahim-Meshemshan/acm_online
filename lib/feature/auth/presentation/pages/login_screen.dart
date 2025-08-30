@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(height: 50.h),
                         CustomTextFormField(
                           readOnly: false,
-                          controller: viewModel.firstNameController,
+                          controller: viewModel.emailController,
                           labelText: 'Email',
                           hintText: 'Enter your Email',
                           keyboardType: TextInputType.emailAddress,
@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         CustomButton(
                           onPressed: () {
                             if (viewModel.formKey.currentState!.validate()) {
-                              viewModel.signIn();
+                              viewModel.login();
                               // ahmedmeshan@gmail.com
                               // Ahmedmesh@123
                               //TODO: Navigator to home page

@@ -6,19 +6,16 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../../core/models/result.dart';
 import '../../../../../core/utils/status.dart';
-import '../../../resources/domain/entities/resources_response_entity.dart';
-import '../../../resources/domain/use_cases/resources_use_case.dart';
-import '../../../resources/presentation/pages/resources_screen.dart';
+import '../../../levels/presentation/pages/resources_screen.dart';
+
 
 part 'level_question_state.dart';
 
 @injectable
 class LevelQuestionCubit extends Cubit<LevelQuestionState> {
-  LevelQuestionCubit({required this.useCase,required this.resourcesUseCase}) : super(const LevelQuestionState());
-  ResourcesUseCase resourcesUseCase;
+  LevelQuestionCubit({required this.useCase}) : super(const LevelQuestionState());
 
   final LevelQuestionUseCase useCase;
   Timer? _timer;
@@ -34,13 +31,13 @@ class LevelQuestionCubit extends Cubit<LevelQuestionState> {
 
     final result = await useCase.call();
     switch (result) {
-      case ApiSuccess<List<QuestionEntity>>():
+      case ApiSuccessResult<List<QuestionEntity>>():
         emit(state.copyWith(
           levelQuestionList: result.data,
           levelQuestionState: Status.success,
         ));
         startTimer();
-      case ApiError<List<QuestionEntity>>():
+      case ApiErrorResult<List<QuestionEntity>>():
         emit(state.copyWith(
           levelQuestionError: result.failures.toString(),
           levelQuestionState: Status.error,
@@ -50,30 +47,6 @@ class LevelQuestionCubit extends Cubit<LevelQuestionState> {
 
 
 
-  Future<void> fetchResources(String level) async {
-    if (isClosed) return;
-    emit(state.copyWith(resourcesState: Status.loading));
-
-    final result = await resourcesUseCase.call(level);
-    if (isClosed) return;
-    switch (result) {
-      case ApiSuccess<List<ResourcesEntity>>():
-        emit(
-          state.copyWith(
-            resourcesList: result.data,
-            resourcesState: Status.success,
-          ),
-        );
-
-      case ApiError<List<ResourcesEntity>>():
-        emit(
-          state.copyWith(
-            resourcesError: result.failures.toString(),
-            resourcesState: Status.error,
-          ),
-        );
-    }
-  }
 
   void startTimer() {
     _timer?.cancel();
@@ -168,7 +141,7 @@ class LevelQuestionCubit extends Cubit<LevelQuestionState> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ResourcesScreen(level: level),
+        builder: (context) => ResourcesScreen(),
       ),
     );
   }

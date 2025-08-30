@@ -63,8 +63,8 @@ class AppValidators {
   }
 
   static String? validateFullName(String? val) {
-    if (val == null || val.isEmpty) {
-      return 'this field is required';
+    if (val == null || val.isEmpty || val.length < 3) {
+      return 'this field is required and must be more than 3 characters';
     } else {
       return null;
     }

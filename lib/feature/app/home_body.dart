@@ -1,12 +1,15 @@
-import 'package:acm_online/core/widget/custom_app_bar.dart';
 import 'package:acm_online/feature/app/home/presentation/pages/home_screen.dart';
 import 'package:acm_online/feature/app/profile/presentation/pages/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../core/app_colors/colors.dart';
+import '../../core/di/di.dart';
 import 'category/presentation/pages/category_screen.dart';
-import 'leader_bord/presentation/pages/levels_screen.dart';
+import 'leader_board/presentation/leader_board_screen.dart';
+import 'levels/presentation/cubit/resources_cubit.dart';
+import 'levels/presentation/pages/resources_screen.dart';
 
 class HomeBodyScreen extends StatelessWidget {
   HomeBodyScreen({super.key});
@@ -14,7 +17,10 @@ class HomeBodyScreen extends StatelessWidget {
   final List<Widget> screens = [
     const HomeScreen(),
     const CategoryScreen(),
-    const LevelsScreen(),
+    BlocProvider(
+        create: (context) => getIt<ResourcesCubit>(),
+        child: const ResourcesScreen()),
+    const LeaderBoardScreen(),
     const ProfileScreen()
   ];
   @override
@@ -40,9 +46,15 @@ class HomeBodyScreen extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: FaIcon(
-                  FontAwesomeIcons.award, color: AppColors.primaryColor,),
+                  FontAwesomeIcons.book, color: AppColors.primaryColor,),
 
                 label: 'Levels',
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(
+                  FontAwesomeIcons.award, color: AppColors.primaryColor,),
+
+                label: 'Leader Board',
               ),
               BottomNavigationBarItem(
                 icon: Icon(

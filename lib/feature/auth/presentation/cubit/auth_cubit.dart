@@ -1,27 +1,23 @@
+import 'package:acm_online/feature/auth/data/models/login_response_model.dart';
+import 'package:acm_online/feature/auth/data/models/register_response-mdoel.dart';
+import 'package:acm_online/feature/auth/data/repositories/auth_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 
 import '../../../../../core/models/result.dart';
 import '../../../../../core/utils/status.dart';
-import '../../../../core/di/di.dart';
-import '../../domain/entities/signin_entity.dart';
+
 import '../../domain/entities/signin_request_entity.dart';
-import '../../domain/entities/signup_entity.dart';
 import '../../domain/entities/signup_request_entity.dart';
-import '../../domain/use_cases/signin_use_case.dart';
-import '../../domain/use_cases/signup_use_case.dart';
 
 part 'auth_state.dart';
 
 @injectable
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit({required this.signupUseCase,required this.signInUseCase}) : super(const AuthState());
+  final AuthRepository _authRepository;
 
-  SignupUseCase signupUseCase;
-  SignInUseCase signInUseCase;
+  AuthCubit(this._authRepository) : super(const AuthState());
 
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
@@ -34,8 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   bool isObscureConfirmPassword = true;
 
-
-  Future<void> signUp() async {
+  Future<void> register() async {
     emit(state.copyWith(signUpState: Status.loading));
     final signup = SignUpRequestEntity(
       firstName: firstNameController.text,
@@ -43,44 +38,43 @@ class AuthCubit extends Cubit<AuthState> {
       email: emailController.text,
       password: passwordController.text,
     );
-    ApiResult<SignupResponseEntity> result = await signupUseCase.call(signup);
+    ApiResult<RegisterResponseModel> result = await _authRepository.register(
+      signup,
+    );
     switch (result) {
-      case ApiSuccess<SignupResponseEntity>():
+      case ApiSuccessResult<RegisterResponseModel>():
         emit(
           state.copyWith(signupList: result.data, signUpState: Status.success),
         );
-      case ApiError<SignupResponseEntity>():
+      case ApiErrorResult<RegisterResponseModel>():
         emit(
           state.copyWith(
-            signInError: result.failures.toString(),
+            signInError: result.failures.errorMessage,
             signUpState: Status.error,
           ),
         );
     }
   }
 
-
-  Future<void> signIn() async {
-    getIt<Dio>().options.headers.remove('Authorization');
+  Future<void> login() async {
     emit(state.copyWith(signInState: Status.loading));
-    final signIn = SignInRequestEntity(
+    final login = SignInRequestEntity(
       email: emailController.text,
       password: passwordController.text,
     );
-    ApiResult<SignInResponseEntity> result = await signInUseCase.call(signIn);
+    ApiResult<LoginResponseModel> result = await _authRepository.login(login);
     switch (result) {
-      case ApiSuccess<SignInResponseEntity>():
+      case ApiSuccessResult<LoginResponseModel>():
         emit(
           state.copyWith(signInList: result.data, signInState: Status.success),
         );
-      case ApiError<SignInResponseEntity>():
+      case ApiErrorResult<LoginResponseModel>():
         emit(
           state.copyWith(
-            signInError: result.failures.toString(),
+            signInError: result.failures.errorMessage,
             signInState: Status.error,
           ),
         );
-
     }
   }
 }

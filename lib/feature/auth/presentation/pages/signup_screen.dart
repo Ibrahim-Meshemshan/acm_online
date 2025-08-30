@@ -39,7 +39,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 } else {
                   DialogUtils.hideLoading(context);
                   if (state.signUpState == Status.error) {
-                    DialogUtils.showError(context, state.signUpError ?? '');
+                    DialogUtils.showError(context, state.signUpError ?? 'Unexpected error');
                   } else if (state.signUpState == Status.success) {
                     DialogUtils.showSuccess(context, "Operation completed successfully",);
                     Navigator.pop(context);
@@ -114,7 +114,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         CustomButton(
                           onPressed: () {
                             if (viewModel.formKey.currentState!.validate()) {
-                              context.read<AuthCubit>().signUp();
+                              viewModel.register();
                             }
                           },
                           text: 'Sign_up',

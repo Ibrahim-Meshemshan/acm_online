@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/app_colors/colors.dart';
 import '../../../core/routes_manager/routes_names.dart';
+import '../../../core/storage/sharedprefrencec_helper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -30,8 +31,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       ),
     );
 
-    _controller.forward().whenComplete(() {
-      Navigator.pushReplacementNamed(context, RoutesNames.onboarding);
+    _controller.forward().whenComplete(() async {
+      final token = SharedPreferencesHelper.getToken();
+
+      if (token != null && token.isNotEmpty) {
+
+        Navigator.pushReplacementNamed(context, RoutesNames.homeBody);
+      } else {
+        Navigator.pushReplacementNamed(context, RoutesNames.login);
+      }
     });
   }
 

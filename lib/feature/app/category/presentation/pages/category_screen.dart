@@ -50,9 +50,9 @@ class CategoryScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListView.builder(
-                      itemCount: state.categoryList?.length,
+                      itemCount: state.categoryList?.data.length,
                       itemBuilder: (context, index) {
-                        final category = state.categoryList?[index];
+                        final category = state.categoryList?.data[index];
                         if (category == null) {
                           return const SizedBox.shrink(); // Handle null category gracefully
                         }

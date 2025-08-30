@@ -10,4 +10,14 @@ class SignUpRequestEntity {
   String? lastName;
   String? email;
   String? password;
+
+  // to json
+  Map<String,dynamic> toJson(){
+    return {
+      'firstname': firstName,
+      'lastname': lastName,
+      'email': email,
+      'password': password,
+    };
+  }
 }

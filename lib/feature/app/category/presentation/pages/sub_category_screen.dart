@@ -35,7 +35,7 @@ class SubCategoryScreen extends StatelessWidget {
             const SizedBox(height: 30),
             BlocProvider(
               create:
-                  (context) => getIt<SubCategoryCubit>()..fetchSubCategory(),
+                  (context) => getIt<SubCategoryCubit>()..getSubCategory(),
               child: BlocBuilder<SubCategoryCubit, SubCategoryState>(
                 builder: (context, state) {
                   if (state.subCategoryState == Status.loading) {
@@ -83,7 +83,7 @@ class SubCategoryScreen extends StatelessWidget {
                           const SizedBox(height: 20),
                           Expanded(
                             child: GridView.builder(
-                              itemCount: state.subCategoryList?.length,
+                              itemCount: state.subCategoryList?.data.length,
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
@@ -114,15 +114,8 @@ class SubCategoryScreen extends StatelessWidget {
                                             ),
                                           ),
                                           child: Text(
-                                            state
-                                                    .subCategoryList?[index]
-                                                    .name ??
-                                                '',
-                                            style:
-                                                AppTheme
-                                                    .lightTheme
-                                                    .textTheme
-                                                    .titleMedium,
+                                            state.subCategoryList?.data[index].name ?? '',
+                                            style: AppTheme.lightTheme.textTheme.titleMedium,
                                           ),
                                         ),
                                       ),

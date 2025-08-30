@@ -1,26 +1,25 @@
-import 'package:acm_online/feature/app/category/domain/use_cases/sub_category_use_case.dart';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../../../core/models/result.dart';
 import '../../../../../../core/utils/status.dart';
-import '../../../domain/entities/sub_category_entity.dart';
+import '../../../data/models/sub_category_response_model.dart';
+import '../../../data/repositories/category_repository.dart';
 
 part 'sub_category_state.dart';
 
 @injectable
 class SubCategoryCubit extends Cubit<SubCategoryState> {
-  SubCategoryCubit({required this.useCase}) : super(const SubCategoryState());
+  SubCategoryCubit( this._categoryRepo):super(const SubCategoryState());
 
-  SubCategoryUseCase useCase;
+  final CategoryRepository _categoryRepo;
 
-  Future<void> fetchSubCategory() async {
+  Future<void> getSubCategory() async {
     emit(state.copyWith(subCategoryState: Status.loading));
 
-    final result = await useCase.call();
+    final result = await _categoryRepo.getSubCategory();
 
     switch (result) {
-      case ApiSuccess<List<SubCategoryEntity>>():
+      case ApiSuccessResult<SubCategoryResponseModel>():
         emit(
           state.copyWith(
             subCategoryList: result.data,
@@ -28,7 +27,7 @@ class SubCategoryCubit extends Cubit<SubCategoryState> {
           ),
         );
 
-      case ApiError<List<SubCategoryEntity>>():
+      case ApiErrorResult<SubCategoryResponseModel>():
         emit(
           state.copyWith(
             subCategoryError: result.failures.toString(),

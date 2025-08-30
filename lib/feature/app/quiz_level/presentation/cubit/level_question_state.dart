@@ -13,13 +13,13 @@ class LevelQuestionState {
 
   final Status resourcesState;
   final String? resourcesError;
-  final List<ResourcesEntity>? resourcesList;
+
 
   const LevelQuestionState({
      this.levelQuestionState = Status.initial,
      this.resourcesState = Status.initial,
     this.resourcesError,
-    this.resourcesList,
+
     this.levelQuestionError,
     this.levelQuestionList,
     this.exception,
@@ -38,7 +38,7 @@ class LevelQuestionState {
     double? finalScore,
     Status? resourcesState,
     String? resourcesError,
-    List<ResourcesEntity>? resourcesList,
+
   }) {
     return LevelQuestionState(
       levelQuestionState: levelQuestionState ?? this.levelQuestionState,
@@ -50,7 +50,7 @@ class LevelQuestionState {
       finalScore: finalScore ?? this.finalScore,
       resourcesState: resourcesState ?? this.resourcesState,
       resourcesError: resourcesError ?? this.resourcesError,
-      resourcesList: resourcesList ?? this.resourcesList,
+
     );
   }
 }

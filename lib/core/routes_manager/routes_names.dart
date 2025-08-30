@@ -11,4 +11,5 @@ class RoutesNames {
   static const String levels = '/levels';
   static const String levelDetails = '/levelDetails';
   static const String resources = "/resources";
+  static const String leaderBoard = "/LeaderBoard";
 }
