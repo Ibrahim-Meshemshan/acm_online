@@ -1,6 +1,7 @@
 class ApiConstant {
   //localhost:3050/categories/public/
-  static const String baseUrl = 'http://172.27.240.1:3050/';
+  // static const String baseUrl = 'http://172.27.240.1:3050/'; // nativve
+  static const String baseUrl = 'http://192.168.1.9:3050/'; // شغال عالموبايل بدون في بي ان وعاللاب مع في بي ان
 
   // todo: for emulator: 172.23.16.1
   // todo: for mobile: 192.168.43.22
@@ -12,6 +13,7 @@ class ApiConstant {
   static const String category = 'categories/public';
   static const String subCategory = 'categories/public/sub-categories';
   static const String levels = 'resources/public';
+  static const String profile = 'user/profile';
 
 
 

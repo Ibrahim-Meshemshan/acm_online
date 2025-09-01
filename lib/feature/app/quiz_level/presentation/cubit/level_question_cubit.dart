@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/models/result.dart';
 import '../../../../../core/utils/status.dart';
-import '../../../levels/presentation/pages/resources_screen.dart';
+import '../../../resources/presentation/pages/resources_screen.dart';
 
 
 part 'level_question_state.dart';

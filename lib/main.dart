@@ -6,7 +6,7 @@ import 'core/app_theme/app_theme.dart';
 import 'core/di/di.dart';
 import 'core/routes_manager/route_generator.dart';
 import 'core/storage/sharedprefrencec_helper.dart';
-import 'feature/app/levels/presentation/cubit/resources_cubit.dart';
+import 'feature/app/resources/presentation/cubit/resources_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

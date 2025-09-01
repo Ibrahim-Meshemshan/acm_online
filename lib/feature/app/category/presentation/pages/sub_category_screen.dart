@@ -1,4 +1,5 @@
 import 'package:acm_online/core/di/di.dart';
+import 'package:acm_online/core/widget/custom_app_bar.dart';
 import 'package:acm_online/feature/app/category/presentation/cubit/sub_category/sub_category_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,13 +15,7 @@ class SubCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(
-          FontAwesomeIcons.brain,
-          color: AppColors.primaryColor,
-        ),
-        title: const Text('Quiz Sub Category'),
-      ),
+      appBar: CustomAppBar(title: 'Quiz Sub Category'),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
@@ -29,113 +24,86 @@ class SubCategoryScreen extends StatelessWidget {
             Text(
               'Choose Your Quiz',
               style: AppTheme.lightTheme.textTheme.titleMedium?.copyWith(
-                fontSize: 18,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             BlocProvider(
-              create:
-                  (context) => getIt<SubCategoryCubit>()..getSubCategory(),
+              create: (context) =>
+              getIt<SubCategoryCubit>()..getSubCategory(),
               child: BlocBuilder<SubCategoryCubit, SubCategoryState>(
                 builder: (context, state) {
                   if (state.subCategoryState == Status.loading) {
-                    return const Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.primaryColor,
+                    return const Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.primaryColor,
+                        ),
                       ),
                     );
                   } else if (state.subCategoryState == Status.error) {
-                    return Center(
-                      child: Text(
-                        "حدث خطأ: ${state.subCategoryState.toString()}",
-                        style: const TextStyle(color: Colors.white),
+                    return Expanded(
+                      child: Center(
+                        child: Text(
+                          "حدث خطأ: ${state.subCategoryState.toString()}",
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontSize: 16,
+                          ),
+                        ),
                       ),
                     );
                   } else if (state.subCategoryState == Status.success) {
-                    return Container(
-                      width: double.infinity,
-                      height: MediaQuery.of(context).size.height * 0.5,
-                      decoration: BoxDecoration(
-                        color: AppColors.backgroundColor,
-                        border: Border.all(color: AppColors.whiteColor),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 10),
-                          Text(
-                            'Select Category',
-                            style: AppTheme.lightTheme.textTheme.titleMedium
-                                ?.copyWith(
-                                  color: AppColors.whiteColor,
-                                  fontSize: 18,
+                    final subCategories = state.subCategoryList?.data ?? [];
+
+                    return Expanded(
+                      child: ListView.separated(
+                        itemCount: subCategories.length,
+                        separatorBuilder: (_, __) =>
+                        const SizedBox(height: 12),
+                        itemBuilder: (context, index) {
+                          final sub = subCategories[index];
+                          return Card(
+                            color: AppColors.cardColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            elevation: 3,
+                            child: ListTile(
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              leading: CircleAvatar(
+                                backgroundColor:
+                                AppColors.primaryColor.withOpacity(0.2),
+                                child: const Icon(
+                                  FontAwesomeIcons.brain,
+                                  color: AppColors.primaryColor,
                                 ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Choose a category for your quiz questions',
-                            style: AppTheme.lightTheme.textTheme.titleMedium
-                                ?.copyWith(
+                              ),
+                              title: Text(
+                                sub.name ?? '',
+                                style: const TextStyle(
                                   color: AppColors.whiteColor,
-                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
                                 ),
-                          ),
-                          const SizedBox(height: 20),
-                          Expanded(
-                            child: GridView.builder(
-                              itemCount: state.subCategoryList?.data.length,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                  ),
-                              padding: const EdgeInsets.all(10),
-                              itemBuilder: (context, index) {
-                                return Row(
-                                  children: [
-                                    Expanded(
-                                      child: InkWell(
-                                        onTap: () {
-                                          //
-                                        },
-                                        child: Container(
-                                          margin: const EdgeInsets.symmetric(
-                                            horizontal: 5,
-                                          ),
-                                          height:
-                                              MediaQuery.of(
-                                                context,
-                                              ).size.height *
-                                              0.1,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            color: AppColors.primaryColor,
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                          ),
-                                          child: Text(
-                                            state.subCategoryList?.data[index].name ?? '',
-                                            style: AppTheme.lightTheme.textTheme.titleMedium,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
+                              ),
+                              trailing: const Icon(
+                                Icons.arrow_forward_ios,
+                                color: AppColors.primaryColor,
+                                size: 18,
+                              ),
+                              onTap: () {
+                                // هنا ضع التنقل للشاشة التالية
                               },
                             ),
-                          ),
-                        ],
+                          );
+                        },
                       ),
                     );
                   }
-                  return const SizedBox(
-                    height: 10,
-                    child: Text(
-                      'Sized Box',
-                      style: TextStyle(color: Colors.red),
-                    ),
-                  );
+                  return const SizedBox();
                 },
               ),
             ),

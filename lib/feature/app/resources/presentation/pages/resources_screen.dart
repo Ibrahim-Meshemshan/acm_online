@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/app_theme/app_theme.dart';
 import '../../../../../core/app_colors/colors.dart';
+import '../../../../../core/widget/custom_app_bar.dart';
 import '../cubit/resources_cubit.dart';
 import '../widgets/resources_by_level_screen_screen.dart';
 
@@ -31,19 +32,7 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Resources",
-          style: AppTheme.lightTheme.textTheme.titleLarge?.copyWith(
-            color: AppColors.primaryColor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-
-        backgroundColor: AppColors.backgroundColor,
-        elevation: 0,
-
-      ),
+      appBar: CustomAppBar(title: "Resources"),
       backgroundColor: AppColors.backgroundColor,
       body: BlocBuilder<ResourcesCubit, ResourcesState>(
         builder: (context, state) {

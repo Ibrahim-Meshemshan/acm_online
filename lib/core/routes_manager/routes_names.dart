@@ -8,7 +8,7 @@ class RoutesNames {
   static const String subCategory = "/subCategory";
   static const String quizScreen = "/quizScreen";
   static const String profile = "/profile";
-  static const String levels = '/levels';
+  static const String levels = '/resources';
   static const String levelDetails = '/levelDetails';
   static const String resources = "/resources";
   static const String leaderBoard = "/LeaderBoard";

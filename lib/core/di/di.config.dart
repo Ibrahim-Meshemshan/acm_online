@@ -21,12 +21,11 @@ import '../../feature/app/category/presentation/cubit/category/category_cubit.da
     as _i1071;
 import '../../feature/app/category/presentation/cubit/sub_category/sub_category_cubit.dart'
     as _i707;
-import '../../feature/app/levels/data/data_source/resources_data_source.dart'
-    as _i1058;
-import '../../feature/app/levels/data/repository/resources_repository.dart'
-    as _i1029;
-import '../../feature/app/levels/presentation/cubit/resources_cubit.dart'
-    as _i304;
+import '../../feature/app/profile/data/data_source/profile_data_source.dart'
+    as _i733;
+import '../../feature/app/profile/data/repository/profile_repo.dart' as _i1024;
+import '../../feature/app/profile/presentation/cubit/profile_cubit.dart'
+    as _i331;
 import '../../feature/app/quiz_level/data/data_sources/level_question_data_source.dart'
     as _i224;
 import '../../feature/app/quiz_level/data/repositories/level_question_repo_impl.dart'
@@ -37,6 +36,12 @@ import '../../feature/app/quiz_level/domain/use_cases/level_question_use_case.da
     as _i73;
 import '../../feature/app/quiz_level/presentation/cubit/level_question_cubit.dart'
     as _i618;
+import '../../feature/app/resources/data/data_source/resources_data_source.dart'
+    as _i765;
+import '../../feature/app/resources/data/repository/resources_repository.dart'
+    as _i238;
+import '../../feature/app/resources/presentation/cubit/resources_cubit.dart'
+    as _i867;
 import '../../feature/auth/data/data_sources/auth_data_source.dart' as _i812;
 import '../../feature/auth/data/repositories/auth_repository.dart' as _i676;
 import '../../feature/auth/presentation/cubit/auth_cubit.dart' as _i47;
@@ -54,17 +59,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i812.AuthDataSource>(() => _i812.AuthDataSource());
     gh.singleton<_i361.Dio>(() => dioInjection.provideDIO());
     gh.singleton<_i247.CategoryDataSource>(() => _i247.CategoryDataSource());
-    gh.singleton<_i1058.ResourcesDataSource>(
-      () => _i1058.ResourcesDataSource(),
-    );
+    gh.singleton<_i733.ProfileDataSource>(() => _i733.ProfileDataSource());
+    gh.singleton<_i765.ResourcesDataSource>(() => _i765.ResourcesDataSource());
     gh.factory<_i555.CategoryRepository>(
       () => _i555.CategoryRepository(gh<_i247.CategoryDataSource>()),
     );
     gh.singleton<_i266.RestClient>(
       () => dioInjection.provideWebServices(gh<_i361.Dio>()),
     );
-    gh.factory<_i1029.ResourcesRepository>(
-      () => _i1029.ResourcesRepository(gh<_i1058.ResourcesDataSource>()),
+    gh.factory<_i1024.ProfileRepo>(
+      () => _i1024.ProfileRepo(gh<_i733.ProfileDataSource>()),
     );
     gh.factory<_i676.AuthRepository>(
       () => _i676.AuthRepository(gh<_i812.AuthDataSource>()),
@@ -75,11 +79,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i224.LevelQuestionDataSource>(
       () => _i224.LevelQuestionDataSourceImpl(gh<_i266.RestClient>()),
     );
-    gh.factory<_i304.ResourcesCubit>(
-      () => _i304.ResourcesCubit(gh<_i1029.ResourcesRepository>()),
+    gh.factory<_i238.ResourcesRepository>(
+      () => _i238.ResourcesRepository(gh<_i765.ResourcesDataSource>()),
     );
     gh.factory<_i707.SubCategoryCubit>(
       () => _i707.SubCategoryCubit(gh<_i555.CategoryRepository>()),
+    );
+    gh.factory<_i331.ProfileCubit>(
+      () => _i331.ProfileCubit(gh<_i1024.ProfileRepo>()),
     );
     gh.factory<_i1030.LevelQuestionRepo>(
       () => _i810.LevelQuestionRepoImpl(gh<_i224.LevelQuestionDataSource>()),
@@ -92,6 +99,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i618.LevelQuestionCubit>(
       () => _i618.LevelQuestionCubit(useCase: gh<_i73.LevelQuestionUseCase>()),
+    );
+    gh.factory<_i867.ResourcesCubit>(
+      () => _i867.ResourcesCubit(gh<_i238.ResourcesRepository>()),
     );
     return this;
   }
