@@ -21,6 +21,11 @@ import '../../feature/app/category/presentation/cubit/category/category_cubit.da
     as _i1071;
 import '../../feature/app/category/presentation/cubit/sub_category/sub_category_cubit.dart'
     as _i707;
+import '../../feature/app/leader_board/data/data_source/leader_data_source.dart'
+    as _i579;
+import '../../feature/app/leader_board/data/repo/leader_repo.dart' as _i236;
+import '../../feature/app/leader_board/presentation/cubit/leader_cubit.dart'
+    as _i111;
 import '../../feature/app/profile/data/data_source/profile_data_source.dart'
     as _i733;
 import '../../feature/app/profile/data/repository/profile_repo.dart' as _i1024;
@@ -61,6 +66,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i247.CategoryDataSource>(() => _i247.CategoryDataSource());
     gh.singleton<_i733.ProfileDataSource>(() => _i733.ProfileDataSource());
     gh.singleton<_i765.ResourcesDataSource>(() => _i765.ResourcesDataSource());
+    gh.singleton<_i579.LeaderDataSource>(() => _i579.LeaderDataSource());
     gh.factory<_i555.CategoryRepository>(
       () => _i555.CategoryRepository(gh<_i247.CategoryDataSource>()),
     );
@@ -69,6 +75,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1024.ProfileRepo>(
       () => _i1024.ProfileRepo(gh<_i733.ProfileDataSource>()),
+    );
+    gh.factory<_i236.LeaderRepo>(
+      () => _i236.LeaderRepo(gh<_i579.LeaderDataSource>()),
     );
     gh.factory<_i676.AuthRepository>(
       () => _i676.AuthRepository(gh<_i812.AuthDataSource>()),
@@ -96,6 +105,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i73.LevelQuestionUseCase>(
       () => _i73.LevelQuestionUseCase(gh<_i1030.LevelQuestionRepo>()),
+    );
+    gh.factory<_i111.LeaderCubit>(
+      () => _i111.LeaderCubit(gh<_i236.LeaderRepo>()),
     );
     gh.factory<_i618.LevelQuestionCubit>(
       () => _i618.LevelQuestionCubit(useCase: gh<_i73.LevelQuestionUseCase>()),

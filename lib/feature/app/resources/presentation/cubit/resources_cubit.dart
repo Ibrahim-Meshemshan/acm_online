@@ -34,4 +34,16 @@ class ResourcesCubit extends Cubit<ResourcesState> {
         );
     }
   }
+
+  // Future<void> getResults() async {
+  //
+  //   // final result = await _repository.getResults();
+  //   switch (result) {
+  //     case ApiSuccessResult<ResultsResponseModel>():
+  //       emit(state.copyWith());
+  //
+  //     case ApiErrorResult<ResultsResponseModel>():
+  //       emit(state.copyWith());
+  //   }
+  // }
 }

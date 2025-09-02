@@ -1,4 +1,6 @@
+import 'package:acm_online/feature/auth/data/models/auth_me_response_model.dart';
 import 'package:acm_online/feature/auth/data/models/login_response_model.dart';
+import 'package:acm_online/feature/auth/data/models/logout_model.dart';
 import 'package:acm_online/feature/auth/data/models/register_response-mdoel.dart';
 import 'package:acm_online/feature/auth/data/repositories/auth_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -8,6 +10,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/models/result.dart';
 import '../../../../../core/utils/status.dart';
 
+import '../../../../core/storage/sharedprefrencec_helper.dart';
 import '../../domain/entities/signin_request_entity.dart';
 import '../../domain/entities/signup_request_entity.dart';
 
@@ -75,6 +78,28 @@ class AuthCubit extends Cubit<AuthState> {
             signInState: Status.error,
           ),
         );
+    }
+  }
+
+  Future<void> logout(String refreshToken) async {
+    ApiResult<Logout> result = await _authRepository.logout(refreshToken);
+    switch (result) {
+      case ApiSuccessResult<Logout>():
+        emit(state.copyWith(logout: result.data));
+        await SharedPreferencesHelper.removeRefreshToken();
+      case ApiErrorResult<Logout>():
+        emit(state.copyWith(logoutError: result.failures.errorMessage));
+    }
+  }
+
+  Future<void> getAuthMe() async {
+    ApiResult<AuthMeResponseModel> result = await _authRepository.getAuthMe();
+    switch (result) {
+      case ApiSuccessResult<AuthMeResponseModel>():
+        emit(state.copyWith(authMe: result.data));
+        await SharedPreferencesHelper.removeRefreshToken();
+      case ApiErrorResult<AuthMeResponseModel>():
+        emit(state.copyWith(authMeError: result.failures.errorMessage));
     }
   }
 }

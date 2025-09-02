@@ -32,8 +32,13 @@ class AcmOnline extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, child) {
         return MaterialApp(
+
           debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightTheme,
+          theme: AppTheme.lightTheme.copyWith(
+            textTheme: Theme.of(context).textTheme.apply(
+              fontFamily: "Cairo",
+            ),
+          ),
           onGenerateRoute: RouteGenerator.generateRoutes,
         );
       },

@@ -6,7 +6,7 @@ import 'package:acm_online/feature/app/profile/presentation/pages/profile_screen
 import 'package:acm_online/feature/root/onboarding/onboarding_screen.dart';
 import 'package:acm_online/feature/root/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
-import '../../feature/app/leader_board/presentation/leader_board_screen.dart';
+import '../../feature/app/leader_board/presentation/page/leader_board_screen.dart';
 import '../../feature/app/quiz_level/presentation/pages/quiz_level_screen.dart';
 import '../../feature/app/resources/presentation/pages/resources_screen.dart';
 import '../../feature/auth/presentation/pages/login_screen.dart';

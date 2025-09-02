@@ -68,18 +68,18 @@ class DialogUtils {
           ),
           icon: Container(
             alignment: Alignment.center,
-            width: 32,
-            height: 32,
+            width: 50,
+            height: 50,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.primaryColor,
             ),
-            child: Icon(Icons.check),
+            child: const Icon(Icons.check,color: Colors.white,),
           ),
           iconColor: AppColors.primaryColor,
           content: Text(
             message,
-            style: const TextStyle(color: Colors.black, fontSize: 16),
+            style: const TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.bold),
           ),
           actions: [
             TextButton(

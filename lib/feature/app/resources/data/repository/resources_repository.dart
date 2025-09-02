@@ -22,4 +22,18 @@ class ResourcesRepository {
       );
     }
   }
+
+  // Future<ApiResult<ResultsResponseModel>> getResults() async {
+  //   try {
+  //     final response = await _dataSource.getResults();
+  //     return ApiSuccessResult(response);
+  //   } on DioException catch (errorMessage) {
+  //     return ApiErrorResult(
+  //       failures: ServerError(errorMessage: errorMessage.message ?? ''),
+  //     );
+  //   }
+  // }
+
 }
+
+

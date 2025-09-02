@@ -9,12 +9,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../core/app_colors/colors.dart';
 import '../../core/di/di.dart';
 import 'category/presentation/pages/category_screen.dart';
-import 'leader_board/presentation/leader_board_screen.dart';
+import 'leader_board/presentation/page/leader_board_screen.dart';
 
 
 class HomeBodyScreen extends StatelessWidget {
   HomeBodyScreen({super.key});
-  final ValueNotifier<int> _selectedIndex = ValueNotifier<int>(0);
+  final ValueNotifier<int> _selectedIndex = ValueNotifier<int>(4);
   final List<Widget> screens = [
     const HomeScreen(),
     const CategoryScreen(),
@@ -42,24 +42,28 @@ class HomeBodyScreen extends StatelessWidget {
                 label: 'Home',
               ),
               BottomNavigationBarItem(
+                backgroundColor: AppColors.backgroundColor,
                 icon: FaIcon(
                   FontAwesomeIcons.bars, color: AppColors.primaryColor,),
 
                 label: 'Category',
               ),
               BottomNavigationBarItem(
+                backgroundColor: AppColors.backgroundColor,
                 icon: FaIcon(
                   FontAwesomeIcons.book, color: AppColors.primaryColor,),
 
                 label: 'Resources',
               ),
               BottomNavigationBarItem(
+                backgroundColor: AppColors.backgroundColor,
                 icon: FaIcon(
                   FontAwesomeIcons.award, color: AppColors.primaryColor,),
 
                 label: 'Leader Board',
               ),
               BottomNavigationBarItem(
+                backgroundColor: AppColors.backgroundColor,
                 icon: Icon(
                     Icons.person_outline, color: AppColors.primaryColor),
 

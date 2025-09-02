@@ -33,8 +33,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _controller.forward().whenComplete(() async {
       final token = SharedPreferencesHelper.getToken();
+      final refreshToken = SharedPreferencesHelper.getRefreshToken();
 
-      if (token != null && token.isNotEmpty) {
+      if (token != null && token.isNotEmpty && refreshToken != null && refreshToken.isNotEmpty) {
 
         Navigator.pushReplacementNamed(context, RoutesNames.homeBody);
       } else {

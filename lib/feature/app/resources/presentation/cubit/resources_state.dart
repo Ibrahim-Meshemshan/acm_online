@@ -4,11 +4,15 @@ part of 'resources_cubit.dart';
    final Status resourcesState;
    final String? resourcesError;
    final ResourcesResponseModel ? resourcesList;
+   final String? resultError;
+   // final ResultsResponseModel? resultModel;
 
    const ResourcesState({
      this.resourcesState = Status.initial,
      this.resourcesError,
      this.resourcesList,
+     this.resultError,
+     // this.resultModel,
    });
 
    ResourcesState copyWith({

@@ -40,7 +40,7 @@ class QuizLevelScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ResourcesScreen(),
+                          builder: (context) => const ResourcesScreen(),
                         ),
                       );
 
@@ -187,23 +187,23 @@ class QuizLevelScreen extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Expanded(
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.secondPrimaryColor,
-                                foregroundColor: AppColors.whiteColor,
-                              ),
-                              onPressed:
-                                  cubit.currentIndex > 0
-                                      ? cubit.previousQuestion
-                                      : null,
-                              child: const Text(
-                                "Back",
-                                style: TextStyle(color: AppColors.whiteColor),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 20),
+                          // Expanded(
+                          //   child: ElevatedButton(
+                          //     style: ElevatedButton.styleFrom(
+                          //       backgroundColor: AppColors.secondPrimaryColor,
+                          //       foregroundColor: AppColors.whiteColor,
+                          //     ),
+                          //     onPressed:
+                          //         cubit.currentIndex > 0
+                          //             ? cubit.previousQuestion
+                          //             : null,
+                          //     child: const Text(
+                          //       "Back",
+                          //       style: TextStyle(color: AppColors.whiteColor),
+                          //     ),
+                          //   ),
+                          // ),
+                          // const SizedBox(width: 20),
                           Expanded(
                             child: ElevatedButton(
                               onPressed:
@@ -216,8 +216,10 @@ class QuizLevelScreen extends StatelessWidget {
                               ),
                             ),
                           ),
+
                         ],
                       ),
+                      const SizedBox(height: 20,)
                     ],
                   ),
                 );
