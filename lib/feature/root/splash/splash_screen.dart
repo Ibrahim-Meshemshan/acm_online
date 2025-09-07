@@ -60,6 +60,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           child: Text(
             'Acm Online',
             style: TextStyle(
+              fontFamily: 'Cairo',
               fontSize: 48.sp,
               fontWeight: FontWeight.bold,
               color: AppColors.primaryColor,

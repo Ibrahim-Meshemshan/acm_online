@@ -13,7 +13,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
       leading: icon,
       title: Text(
         title,
-        style: const TextStyle(color: AppColors.whiteColor,fontSize: 18),
+        style: const TextStyle(color: AppColors.whiteColor,fontSize: 18,fontFamily: 'Cairo',fontWeight: FontWeight.bold),
       ),
       iconTheme: const IconThemeData(color: AppColors.whiteColor),
       flexibleSpace: Container(

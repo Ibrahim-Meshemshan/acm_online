@@ -1,3 +1,4 @@
+import 'package:acm_online/feature/app/category/presentation/cubit/sub_category/sub_category_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +17,8 @@ void main() async {
   runApp(MultiBlocProvider(
 
       providers: [
-        BlocProvider(create: (context) => getIt<ResourcesCubit>())
+        BlocProvider(create: (context) => getIt<ResourcesCubit>()),
+        // BlocProvider(create: (context) => getIt<SubCategoryCubit>()),
       ],
       child: const AcmOnline()));
 }
@@ -34,11 +36,7 @@ class AcmOnline extends StatelessWidget {
         return MaterialApp(
 
           debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightTheme.copyWith(
-            textTheme: Theme.of(context).textTheme.apply(
-              fontFamily: "Cairo",
-            ),
-          ),
+          theme: AppTheme.lightTheme,
           onGenerateRoute: RouteGenerator.generateRoutes,
         );
       },

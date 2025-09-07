@@ -1,6 +1,7 @@
 import 'package:acm_online/feature/app/home/presentation/pages/home_screen.dart';
 import 'package:acm_online/feature/app/profile/presentation/cubit/profile_cubit.dart';
 import 'package:acm_online/feature/app/profile/presentation/pages/profile_screen.dart';
+import 'package:acm_online/feature/app/quiz_level/presentation/cubit/update_user_level_cubit.dart';
 import 'package:acm_online/feature/app/resources/presentation/cubit/resources_cubit.dart';
 import 'package:acm_online/feature/app/resources/presentation/pages/resources_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ import 'leader_board/presentation/page/leader_board_screen.dart';
 
 class HomeBodyScreen extends StatelessWidget {
   HomeBodyScreen({super.key});
-  final ValueNotifier<int> _selectedIndex = ValueNotifier<int>(4);
+  final ValueNotifier<int> _selectedIndex = ValueNotifier<int>(0);
   final List<Widget> screens = [
     const HomeScreen(),
     const CategoryScreen(),

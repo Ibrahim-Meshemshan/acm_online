@@ -1,6 +1,6 @@
 import 'package:acm_online/core/di/di.dart';
 import 'package:acm_online/core/widget/custom_app_bar.dart';
-import 'package:acm_online/feature/app/category/presentation/cubit/sub_category/sub_category_cubit.dart';
+import 'package:acm_online/feature/app/quiz_level/presentation/cubit/update_user_level_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,31 +8,33 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../core/app_colors/colors.dart';
 import '../../../../../core/app_theme/app_theme.dart';
 import '../../../../../core/utils/status.dart';
+import '../../../quiz_level/presentation/pages/quiz_level_screen.dart';
+import '../cubit/category/category_cubit.dart';
+import '../cubit/category/category_state.dart';
 
 class SubCategoryScreen extends StatelessWidget {
   const SubCategoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(title: 'Quiz Sub Category'),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Choose Your Quiz',
-              style: AppTheme.lightTheme.textTheme.titleMedium?.copyWith(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+    return BlocProvider(
+      create: (context) => getIt<UpdateUserLevelCubit>(),
+      child: Scaffold(
+        appBar: CustomAppBar(title: 'Quiz Sub Category'),
+        body: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Choose Your Quiz',
+                style: AppTheme.lightTheme.textTheme.titleMedium?.copyWith(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            BlocProvider(
-              create: (context) =>
-              getIt<SubCategoryCubit>()..getSubCategory(),
-              child: BlocBuilder<SubCategoryCubit, SubCategoryState>(
+              const SizedBox(height: 20),
+              BlocBuilder<CategoryCubit, CategoryState>(
                 builder: (context, state) {
                   if (state.subCategoryState == Status.loading) {
                     return const Expanded(
@@ -46,7 +48,7 @@ class SubCategoryScreen extends StatelessWidget {
                     return Expanded(
                       child: Center(
                         child: Text(
-                          "حدث خطأ: ${state.subCategoryState.toString()}",
+                          "حدث خطأ: ${state.subCategoryError ?? "خطأ غير معروف"}",
                           style: const TextStyle(
                             color: Colors.red,
                             fontSize: 16,
@@ -56,12 +58,10 @@ class SubCategoryScreen extends StatelessWidget {
                     );
                   } else if (state.subCategoryState == Status.success) {
                     final subCategories = state.subCategoryList?.data ?? [];
-
                     return Expanded(
                       child: ListView.separated(
                         itemCount: subCategories.length,
-                        separatorBuilder: (_, __) =>
-                        const SizedBox(height: 12),
+                        separatorBuilder: (_, __) => const SizedBox(height: 12),
                         itemBuilder: (context, index) {
                           final sub = subCategories[index];
                           return Card(
@@ -72,7 +72,9 @@ class SubCategoryScreen extends StatelessWidget {
                             elevation: 3,
                             child: ListTile(
                               contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
+                                horizontal: 20,
+                                vertical: 10,
+                              ),
                               leading: CircleAvatar(
                                 backgroundColor:
                                 AppColors.primaryColor.withOpacity(0.2),
@@ -95,7 +97,13 @@ class SubCategoryScreen extends StatelessWidget {
                                 size: 18,
                               ),
                               onTap: () {
-                                // هنا ضع التنقل للشاشة التالية
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        QuizLevelScreen(subCategoryId: sub.id),
+                                  ),
+                                );
                               },
                             ),
                           );
@@ -106,8 +114,8 @@ class SubCategoryScreen extends StatelessWidget {
                   return const SizedBox();
                 },
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

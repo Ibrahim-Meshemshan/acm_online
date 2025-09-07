@@ -6,6 +6,8 @@ import '../../../../../core/exceptions/failures.dart';
 import '../../../../../core/models/result.dart';
 import '../data_source/resources_data_source.dart';
 import '../model/resources_response_model.dart';
+import '../model/results_request_model.dart';
+import '../model/results_response_model.dart';
 
 @injectable
 class ResourcesRepository {
@@ -23,16 +25,16 @@ class ResourcesRepository {
     }
   }
 
-  // Future<ApiResult<ResultsResponseModel>> getResults() async {
-  //   try {
-  //     final response = await _dataSource.getResults();
-  //     return ApiSuccessResult(response);
-  //   } on DioException catch (errorMessage) {
-  //     return ApiErrorResult(
-  //       failures: ServerError(errorMessage: errorMessage.message ?? ''),
-  //     );
-  //   }
-  // }
+  Future<ApiResult<ResultsResponseModel>> getResults(ResultsRequestModel request) async {
+    try {
+      final response = await _dataSource.getResults(request);
+      return ApiSuccessResult(response);
+    } on DioException catch (errorMessage) {
+      return ApiErrorResult(
+        failures: ServerError(errorMessage: errorMessage.message ?? ''),
+      );
+    }
+  }
 
 }
 

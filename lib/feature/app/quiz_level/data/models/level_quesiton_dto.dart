@@ -1,12 +1,13 @@
-import 'package:acm_online/feature/app/quiz_level/domain/entities/level_question_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../domain/entities/level_question_entity.dart';
 
 part 'level_quesiton_dto.g.dart';
 
 @JsonSerializable()
 class LevelQuestionDto {
   String? msg;
-  List<QuestionDto>? data;
+  List<QuestionResponse>? data;
 
   LevelQuestionDto({this.msg, this.data});
 
@@ -17,7 +18,7 @@ class LevelQuestionDto {
 }
 
 @JsonSerializable()
-class QuestionDto {
+class QuestionResponse {
   List<String>? options;
   num? id;
   String? question;
@@ -25,7 +26,7 @@ class QuestionDto {
   String? difficulty;
   num? subCategoryId;
 
-  QuestionDto({
+  QuestionResponse({
     this.options,
     this.id,
     this.question,
@@ -34,19 +35,17 @@ class QuestionDto {
     this.subCategoryId,
   });
 
-  QuestionEntity toQuestionEntity() {
-    return QuestionEntity(
-      id: id,
-      options: options,
-      correctAnswer: correctAnswer,
-      difficulty: difficulty,
-      question: question,
-      subCategoryId: subCategoryId,
-    );
-  }
+  factory QuestionResponse.fromJson(Map<String, dynamic> json) =>
+      _$QuestionResponseFromJson(json);
 
-  factory QuestionDto.fromJson(Map<String, dynamic> json) =>
-      _$QuestionDtoFromJson(json);
+  Map<String, dynamic> toJson() => _$QuestionResponseToJson(this);
 
-  Map<String, dynamic> toJson() => _$QuestionDtoToJson(this);
+  QuestionEntity toQuestionEntity() => QuestionEntity(
+    id: id,
+    options: options,
+    correctAnswer: correctAnswer,
+    difficulty: difficulty,
+    question: question,
+    subCategoryId: subCategoryId,
+  );
 }

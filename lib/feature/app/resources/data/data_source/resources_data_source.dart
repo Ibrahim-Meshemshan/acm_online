@@ -4,6 +4,8 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/api_manager/api_constant.dart';
 import '../../../../../core/api_manager/server_dio.dart';
 import '../model/resources_response_model.dart';
+import '../model/results_request_model.dart';
+import '../model/results_response_model.dart';
 
 @singleton
 class ResourcesDataSource {
@@ -14,17 +16,13 @@ class ResourcesDataSource {
     return ResourcesResponseModel.fromJson(response.data);
   }
 
-// Future<ResultsResponseModel> getResults() async{
-//   final response = await ServerDio.dioInstance.get(
-//     ApiConstant.leaderAndResults,
-//     data: {
-//       'userId': 1,
-//       'categoryId': 6,
-//       'subcategoryId':8,
-//       'score': 77
-//     }
-//   );
-//   return ResultsResponseModel.fromJson(response.data);
-// }
+Future<ResultsResponseModel> getResults(ResultsRequestModel request) async{
+    var json = request.toJson();
+  final response = await ServerDio.dioInstance.get(
+    ApiConstant.leaderAndResults,
+    data: json,
+  );
+  return ResultsResponseModel.fromJson(response.data);
+}
 
 }

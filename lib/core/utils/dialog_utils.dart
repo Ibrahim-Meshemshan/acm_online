@@ -79,7 +79,7 @@ class DialogUtils {
           iconColor: AppColors.primaryColor,
           content: Text(
             message,
-            style: const TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.bold),
+            style: const TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
           ),
           actions: [
             TextButton(

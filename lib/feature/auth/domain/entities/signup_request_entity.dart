@@ -1,4 +1,6 @@
 class SignUpRequestEntity {
+
+
   SignUpRequestEntity({
     this.firstName,
     this.lastName,

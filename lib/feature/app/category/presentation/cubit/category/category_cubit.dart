@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../../core/models/result.dart';
 import '../../../../../../core/utils/status.dart';
+import '../../../data/models/sub_category_response_model.dart';
 import 'category_state.dart';
 
 @injectable
@@ -32,6 +33,30 @@ class CategoryCubit extends Cubit<CategoryState> {
           state.copyWith(
             categoryError: result.failures.toString(),
             categoryState: Status.error,
+          ),
+        );
+    }
+  }
+
+  Future<void> fetchSubCategory(int subCategoryId) async {
+    emit(state.copyWith(subCategoryState: Status.loading));
+
+    final result = await _categoryRepository.getSubCategory(subCategoryId);
+
+    switch (result) {
+      case ApiSuccessResult<SubCategoryResponseModel>():
+        emit(
+          state.copyWith(
+            subCategoryList: result.data,
+            subCategoryState: Status.success,
+          ),
+        );
+
+      case ApiErrorResult<SubCategoryResponseModel>():
+        emit(
+          state.copyWith(
+            subCategoryError: result.failures.toString(),
+            subCategoryState: Status.error,
           ),
         );
     }

@@ -16,9 +16,9 @@ class CategoryDataSource {
   }
 
 
-  Future<SubCategoryResponseModel> getSubCategory() async{
+  Future<SubCategoryResponseModel> getSubCategory(int subCategoryId) async{
     final response = await ServerDio.dioInstance.get(
-      ApiConstant.subCategory,
+      "${ApiConstant.subCategory}/$subCategoryId",
     );
     return SubCategoryResponseModel.fromJson(response.data);
   }

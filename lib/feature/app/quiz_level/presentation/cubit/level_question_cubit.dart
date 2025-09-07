@@ -26,10 +26,10 @@ class LevelQuestionCubit extends Cubit<LevelQuestionState> {
   bool showFeedback = false;
   bool _isAnswerVerified = false;
 
-  Future<void> fetchLevelQuestion() async {
+  Future<void> fetchLevelQuestion(int subCategoryId) async {
     emit(state.copyWith(levelQuestionState: Status.loading));
 
-    final result = await useCase.call();
+    final result = await useCase.call(subCategoryId);
     switch (result) {
       case ApiSuccessResult<List<QuestionEntity>>():
         emit(state.copyWith(

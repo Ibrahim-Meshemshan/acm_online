@@ -50,7 +50,10 @@ class HomeScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(context, RoutesNames.quizScreen);
                     },
-                    child: Text('Start Coding Quiz',style: AppTheme.lightTheme.textTheme.titleMedium,),
+                    child: Text('Start Coding Quiz',style: AppTheme.lightTheme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16
+                    ),),
                   ),
                 ),
               ],

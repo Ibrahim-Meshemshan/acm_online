@@ -70,17 +70,18 @@ class ProfileScreen extends StatelessWidget {
                                 "${profile.firstName} ${profile.lastName}",
                                 style: const TextStyle(
                                   color: AppColors.whiteColor,
+                                  fontFamily: 'Cairo',
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
                                 profile.email,
-                                style: TextStyle(color: Colors.grey[600]),
+                                style: TextStyle(color: Colors.grey[600],fontFamily: 'Cairo',),
                               ),
                               Text(
                                 "Joined: $joinDate",
-                                style: TextStyle(color: Colors.grey[600]),
+                                style: TextStyle(color: Colors.grey[600],fontFamily: 'Cairo',),
                               ),
                             ],
                           ),
@@ -135,6 +136,7 @@ class ProfileScreen extends StatelessWidget {
                     const Text(
                       "Category Performance",
                       style: TextStyle(
+                        fontFamily: 'Cairo',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: AppColors.whiteColor,
@@ -180,6 +182,7 @@ class ProfileScreen extends StatelessWidget {
                           "Logout",
                           style: TextStyle(
                             fontSize: 16,
+                            fontFamily: 'Cairo',
                             fontWeight: FontWeight.bold,
                             color: AppColors.whiteColor,
                           ),
@@ -192,11 +195,11 @@ class ProfileScreen extends StatelessWidget {
                                   backgroundColor: AppColors.backgroundColor,
                                   title: const Text(
                                     "Logout",
-                                    style: TextStyle(color: Colors.white),
+                                    style: TextStyle(color: Colors.white,fontFamily: 'Cairo',),
                                   ),
                                   content: const Text(
                                     "Are you sure you want to logout?",
-                                    style: TextStyle(color: Colors.white),
+                                    style: TextStyle(color: Colors.white,fontFamily: 'Cairo',),
                                   ),
                                   actions: [
                                     TextButton(
@@ -206,6 +209,7 @@ class ProfileScreen extends StatelessWidget {
                                       child: const Text(
                                         "No",
                                         style: TextStyle(
+                                          fontFamily: 'Cairo',
                                           color: Colors.green,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -229,6 +233,7 @@ class ProfileScreen extends StatelessWidget {
                                       child: const Text(
                                         "Logout",
                                         style: TextStyle(
+                                          fontFamily: 'Cairo',
                                           color: AppColors.errorColor,
                                         ),
                                       ),
@@ -269,7 +274,7 @@ class ProfileScreen extends StatelessWidget {
                 const SizedBox(width: 6),
                 Text(
                   title,
-                  style: const TextStyle(color: Colors.white, fontSize: 14),
+                  style: const TextStyle(color: Colors.white, fontSize: 14,fontFamily: 'Cairo',),
                 ),
               ],
             ),
@@ -277,6 +282,7 @@ class ProfileScreen extends StatelessWidget {
             Text(
               value,
               style: const TextStyle(
+                fontFamily: 'Cairo',
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -300,6 +306,7 @@ class ProfileScreen extends StatelessWidget {
                 title,
                 style: const TextStyle(
                   fontSize: 16,
+                  fontFamily: 'Cairo',
                   fontWeight: FontWeight.w500,
                   color: AppColors.whiteColor,
                 ),
@@ -309,6 +316,7 @@ class ProfileScreen extends StatelessWidget {
               "$avgScore%",
               style: const TextStyle(
                 fontSize: 16,
+                fontFamily: 'Cairo',
                 fontWeight: FontWeight.bold,
                 color: AppColors.whiteColor,
               ),
@@ -326,7 +334,7 @@ class ProfileScreen extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           "$quizzes quizzes taken",
-          style: const TextStyle(fontSize: 12, color: Colors.grey),
+          style: const TextStyle(fontSize: 12, color: Colors.grey,fontFamily: 'Cairo'),
         ),
       ],
     );

@@ -49,6 +49,7 @@ class ResourcesByLevelScreen extends StatelessWidget {
             style: TextStyle(
               color: _getLevelColor(title),
               fontSize: 22,
+              fontFamily: 'Cairo',
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -76,6 +77,7 @@ class ResourcesByLevelScreen extends StatelessWidget {
               title: Text(
                 res.resourceName ?? '',
                 style: const TextStyle(
+                  fontFamily: 'Cairo',
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
@@ -87,8 +89,9 @@ class ResourcesByLevelScreen extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
+                  fontFamily: 'Cairo',
                   color: AppColors.lightGrey,
-                  fontSize: 13,
+                  fontSize: 14,
                 ),
               )
                   : null,

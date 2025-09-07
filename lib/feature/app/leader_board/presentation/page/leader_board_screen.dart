@@ -92,7 +92,8 @@ class LeaderBoardScreen extends StatelessWidget {
                               ),
                             ),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Icon(
                                   _getTrophyIcon(index),

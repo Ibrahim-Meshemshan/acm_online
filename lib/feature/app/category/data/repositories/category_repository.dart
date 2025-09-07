@@ -24,9 +24,9 @@ class CategoryRepository {
   }
 
 
-  Future<ApiResult<SubCategoryResponseModel>> getSubCategory() async{
+  Future<ApiResult<SubCategoryResponseModel>> getSubCategory(int subCategoryId) async{
     try {
-      final response = await _dataSource.getSubCategory();
+      final response = await _dataSource.getSubCategory(subCategoryId);
       return ApiSuccessResult(response);
     } on DioException catch (errorMessage) {
       return ApiErrorResult(

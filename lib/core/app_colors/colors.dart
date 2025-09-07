@@ -25,5 +25,5 @@ class AppColors {
   static const Color intermediateColor = Color(0xFFFFA726);
   static const Color advancedColor = Color(0xFFEF5350);
 
-  static const String fontFamily = "Inter";
+  static const String fontFamily = "Cairo";
 }

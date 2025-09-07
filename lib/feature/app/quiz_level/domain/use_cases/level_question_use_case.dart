@@ -8,7 +8,7 @@ class LevelQuestionUseCase {
   final LevelQuestionRepo _repo;
   LevelQuestionUseCase(this._repo);
 
-  Future<ApiResult<List<QuestionEntity>>> call()async{
-    return await _repo.fetchLevelQuestion();
+  Future<ApiResult<List<QuestionEntity>>> call(int subCategoryId)async{
+    return await _repo.fetchLevelQuestion(subCategoryId);
   }
 }

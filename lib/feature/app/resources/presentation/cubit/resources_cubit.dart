@@ -1,9 +1,11 @@
+import 'package:acm_online/feature/app/resources/data/model/results_request_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/models/result.dart';
 import '../../../../../core/utils/status.dart';
 import '../../data/model/resources_response_model.dart';
+import '../../data/model/results_response_model.dart';
 import '../../data/repository/resources_repository.dart';
 
 part 'resources_state.dart';
@@ -35,15 +37,15 @@ class ResourcesCubit extends Cubit<ResourcesState> {
     }
   }
 
-  // Future<void> getResults() async {
-  //
-  //   // final result = await _repository.getResults();
-  //   switch (result) {
-  //     case ApiSuccessResult<ResultsResponseModel>():
-  //       emit(state.copyWith());
-  //
-  //     case ApiErrorResult<ResultsResponseModel>():
-  //       emit(state.copyWith());
-  //   }
-  // }
+  Future<void> getResults(ResultsRequestModel request) async {
+
+    final result = await _repository.getResults(request);
+    switch (result) {
+      case ApiSuccessResult<ResultsResponseModel>():
+        emit(state.copyWith());
+
+      case ApiErrorResult<ResultsResponseModel>():
+        emit(state.copyWith());
+    }
+  }
 }
